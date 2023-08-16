@@ -4,6 +4,7 @@ A widget to show note breadcrumbs at the bottom of the page.
 
 ## Demo
 
+https://github.com/rauenzi/Trilium-Breadcrumbs/assets/6865942/42ead32e-53cf-4490-8fbf-a3647f2ffaae
 
 ## Features
 
