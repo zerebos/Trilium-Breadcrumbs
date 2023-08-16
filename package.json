@@ -1,0 +1,14 @@
+{
+  "name": "trilium-breadcrumbs",
+  "version": "1.0.0",
+  "description": "A widget to show note breadcrumbs at the bottom of the page.",
+  "main": "src/widget.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Zerebos",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "eslint": "^8.47.0"
+  }
+}
