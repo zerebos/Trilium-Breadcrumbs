@@ -34,11 +34,12 @@ class BreadcrumbWidget extends api.NoteContextAwareWidget {
         return this.$widget;
     }
 
-    async refreshWithNote(note) {
-        await this.makeBreadcrumb(note);
+    async refreshWithNote() {
+        await this.makeBreadcrumb();
     }
 
     async entitiesReloadedEvent() {
+        if (!this.note) return this.title = "";
         if (!this.title) this.title = this.note.title;
         if (this.note.title != this.title) {
             this.title = this.note.title;
@@ -46,9 +47,9 @@ class BreadcrumbWidget extends api.NoteContextAwareWidget {
         }
     }
 
-    async makeBreadcrumb(note) {
+    async makeBreadcrumb() {
         this.$breadcrumbs.empty();
-        const notePath = note.getBestNotePath();
+        const notePath = api.getActiveContextNotePath().split("/");
         for (let n = 0; n < notePath.length; n++) {
             const path = notePath.slice(0, n + 1);
             const link = await api.createNoteLink(path.join("/"));
