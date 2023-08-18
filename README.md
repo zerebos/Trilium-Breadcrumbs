@@ -4,13 +4,16 @@ A widget to show note breadcrumbs at the bottom of the page.
 
 ## Demo
 
-https://github.com/rauenzi/Trilium-Breadcrumbs/assets/6865942/42ead32e-53cf-4490-8fbf-a3647f2ffaae
+https://github.com/rauenzi/Trilium-Breadcrumbs/assets/6865942/e3578d3d-78d9-4c32-84d6-063023a02f5f
+
 
 ## Features
 
 - Shows breadcrumbs on active note
-- Ability to globally disable
-- Ability to disable per note
+- Optional history navigation (forward/backward)
+- Display at top or bottom
+- Enable or disable at will
+- Toggleable per note
 
 ## Installation
 
@@ -20,4 +23,26 @@ https://github.com/rauenzi/Trilium-Breadcrumbs/assets/6865942/42ead32e-53cf-4490
 
 ## Usage
 
-The breadcrumbs will automatically appear for all notes. You can disable the widget by adding the `#disable` attribute to it. You can also disable it for a single note by adding `#breadcrumbDisable` to the note.
+### Breadcrumbs
+
+The breadcrumbs will automatically appear for all notes. You can disable the widget by adding the `#disable` attribute to it. You can also disable it for a single note by adding `#breadcrumbsDisable` to the note.
+
+### History
+
+The forward/backward buttons are enabled by default. You can disable them by adding the `#disableHistory` label to the widget.
+
+### Position
+
+The breadcrumb bar appears up top by default. If you'd rather it appear at the bottom, simply give it the `#bottom` label.
+
+### Styling
+
+You can remove the borders of the breadcrumbs bar by adding the `#borderless` label to the widget. For more advanced styling, you'll have to add your own CSS!
+
+
+## Links
+
+Check out my other Trilium addons:
+- [Markdown Preview](https://github.com/rauenzi/Trilium-MarkdownPreview)
+
+Want more? Be sure to check out the [Awesome Trilium](https://github.com/Nriver/awesome-trilium) list!

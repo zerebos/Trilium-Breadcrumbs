@@ -1,18 +1,62 @@
 /**
  * A widget to show note breadcrumbs at the bottom of the page.
  */
-const TPL = `<div style="padding: 10px; border-top: 1px solid var(--main-border-color); contain: none;"><div id="breadcrumbs"></div></div>`;
+const TPL = `<div id="breadcrumbs-bar">
+<div id="history-buttons">
+    <button onclick="window.history.back()" class="tree-floating-button bx bx-left-arrow-circle tree-settings-button" title="Go Back"></button>
+    <button onclick="window.history.forward()" class="tree-floating-button bx bx-right-arrow-circle tree-settings-button" title="Go Back"></button>
+</div>
+<div id="breadcrumbs"></div>
+</div>`;
 
 const styles = `
 /* Place your CSS below this */
 
+#breadcrumbs-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-top: 1px solid var(--main-border-color);
+    border-bottom: 1px solid var(--main-border-color);
+    contain: none;
+}
 
+#breadcrumbs-bar.bottom {
+    border-bottom: 0;
+}
+
+#breadcrumbs-bar.borderless {
+    border: 0;
+}
+
+#breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#breadcrumbs a {
+    display: inline-flex;
+    line-height: 1;
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: transform 200ms ease, background-color 200ms ease, filter 200ms ease;
+}
+
+#breadcrumbs a:hover {
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    filter: brightness(1.2);
+    transform: translateY(-3px);
+}
 
 /* Place your CSS above this */`;
 
 
 class BreadcrumbWidget extends api.NoteContextAwareWidget {
-    get position() {return 100;}
+    get position() {return api.startNote.hasLabel("bottom") ? 100 : 1;}
     get parentWidget() {return "center-pane";}
 
     constructor() {
@@ -30,6 +74,9 @@ class BreadcrumbWidget extends api.NoteContextAwareWidget {
     doRender() {
         this.$widget = $(TPL);
         this.$breadcrumbs = this.$widget.find("#breadcrumbs");
+        this.updateStyles();
+        if (api.startNote.hasLabel("bottom")) this.$widget.addClass("bottom");
+        if (api.startNote.hasLabel("borderless")) this.$widget.addClass("borderless");
         this.cssBlock(styles);
         return this.$widget;
     }
@@ -38,7 +85,8 @@ class BreadcrumbWidget extends api.NoteContextAwareWidget {
         await this.makeBreadcrumb();
     }
 
-    async entitiesReloadedEvent() {
+    async entitiesReloadedEvent({loadResults}) {
+        if (loadResults.attributes.length) this.updateStyles();
         if (!this.note) return this.title = "";
         if (!this.title) this.title = this.note.title;
         if (this.note.title != this.title) {
@@ -54,8 +102,17 @@ class BreadcrumbWidget extends api.NoteContextAwareWidget {
             const path = notePath.slice(0, n + 1);
             const link = await api.createNoteLink(path.join("/"));
             this.$breadcrumbs.append(link);
-            if (n < (notePath.length - 1)) this.$breadcrumbs.append(" / ");
+            if (n < (notePath.length - 1)) this.$breadcrumbs.append("/");
         }
+    }
+
+    updateStyles() {
+        const buttonWrapper = this.$widget.find("#history-buttons");
+        if (!buttonWrapper) return; // This should never happen but... just in case
+        const isVisible = buttonWrapper.css("display") !== "none";
+        const shouldHide = api.startNote.hasLabel("disableHistory");
+        if (isVisible && shouldHide) buttonWrapper.hide();
+        if (!isVisible && !shouldHide) buttonWrapper.show();
     }
 }
 
