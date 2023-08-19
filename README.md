@@ -33,7 +33,7 @@ The forward/backward buttons are enabled by default. You can disable them by add
 
 ### Position
 
-The breadcrumb bar appears up top by default. If you'd rather it appear at the bottom, simply give it the `#bottom` label.
+The breadcrumb bar appears a part of the note by default. if you'd rather it appear at the top of the page, simply give it the `#top` label. If you'd rather it appear at the bottom of the panel, give it `#bottom`.
 
 ### Styling
 

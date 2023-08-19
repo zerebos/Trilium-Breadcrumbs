@@ -26,6 +26,12 @@ const styles = `
     border-bottom: 0;
 }
 
+.note-split > #breadcrumbs-bar {
+    border-top: 0;
+    margin: 0 5px 0 10px;
+    padding: 10px 10px 15px 10px;
+}
+
 #breadcrumbs-bar.borderless {
     border: 0;
 }
@@ -56,8 +62,8 @@ const styles = `
 
 
 class BreadcrumbWidget extends api.NoteContextAwareWidget {
-    get position() {return api.startNote.hasLabel("bottom") ? 100 : 1;}
-    get parentWidget() {return "center-pane";}
+    get position() {return api.startNote.hasLabel("bottom") ? 100 : api.startNote.hasLabel("top") ? 1 : 50;}
+    get parentWidget() {return (this.position === 100 || this.position === 1) ? "center-pane" : "note-detail-pane";}
 
     constructor() {
         super();
