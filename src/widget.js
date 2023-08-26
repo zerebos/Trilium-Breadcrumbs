@@ -60,9 +60,10 @@ const styles = `
 
 /* Place your CSS above this */`;
 
+const position = api.startNote.getLabelValue("breadcrumbsPosition") ?? "";
 
 class BreadcrumbWidget extends api.NoteContextAwareWidget {
-    get position() {return api.startNote.hasLabel("bottom") ? 100 : api.startNote.hasLabel("top") ? 1 : 50;}
+    get position() {return position === "bottom" ? 100 : position === "top" ? 1 : 50;}
     get parentWidget() {return (this.position === 100 || this.position === 1) ? "center-pane" : "note-detail-pane";}
 
     constructor() {
@@ -72,7 +73,7 @@ class BreadcrumbWidget extends api.NoteContextAwareWidget {
 
     isEnabled() {
         if (!super.isEnabled()) return false;
-        const widgetDisable = api.startNote.hasLabel("disable");
+        const widgetDisable = api.startNote.hasLabel("breadcrumbsDisable");
         const noteDisable = this.note.hasLabel("breadcrumbsDisable");
         return !widgetDisable && !noteDisable;
     }
@@ -81,7 +82,7 @@ class BreadcrumbWidget extends api.NoteContextAwareWidget {
         this.$widget = $(TPL);
         this.$breadcrumbs = this.$widget.find("#breadcrumbs");
         this.updateStyles();
-        if (api.startNote.hasLabel("bottom")) this.$widget.addClass("bottom");
+        if (position === "bottom") this.$widget.addClass("bottom");
         if (api.startNote.hasLabel("borderless")) this.$widget.addClass("borderless");
         this.cssBlock(styles);
         return this.$widget;

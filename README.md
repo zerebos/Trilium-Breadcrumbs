@@ -25,7 +25,7 @@ https://github.com/rauenzi/Trilium-Breadcrumbs/assets/6865942/e3578d3d-78d9-4c32
 
 ### Breadcrumbs
 
-The breadcrumbs will automatically appear for all notes. You can disable the widget by adding the `#disable` attribute to it. You can also disable it for a single note by adding `#breadcrumbsDisable` to the note.
+The breadcrumbs will automatically appear for all notes. You can disable the widget by adding the `#breadcrumbsDisable` attribute to it. You can also disable it for a single note by adding `#breadcrumbsDisable` to the note.
 
 ### History
 
@@ -33,7 +33,7 @@ The forward/backward buttons are enabled by default. You can disable them by add
 
 ### Position
 
-The breadcrumb bar appears a part of the note by default. if you'd rather it appear at the top of the page, simply give it the `#top` label. If you'd rather it appear at the bottom of the panel, give it `#bottom`.
+The breadcrumb bar appears a part of the note by default. If you'd rather it appear at the top of the page, simply give it the `#breadcrumbsPosition=top` label. If you'd rather it appear at the bottom of the panel, give it `#breadcrumbsPosition=bottom`.
 
 ### Styling
 
@@ -42,7 +42,10 @@ You can remove the borders of the breadcrumbs bar by adding the `#borderless` la
 
 ## Links
 
-Check out my other Trilium addons:
-- [Markdown Preview](https://github.com/rauenzi/Trilium-MarkdownPreview)
+Check out my other Trilium-based projects:
+- [Trilium Markdown Preview](https://github.com/rauenzi/Trilium-MarkdownPreview)
+- [Trilium Breadcrumbs](https://github.com/rauenzi/Trilium-Breadcrumbs)
+- [Trilium Types](https://github.com/rauenzi/trilium-types)
+- [Trilium ETAPI](https://github.com/rauenzi/trilium-etapi)
 
 Want more? Be sure to check out the [Awesome Trilium](https://github.com/Nriver/awesome-trilium) list!
