@@ -93,7 +93,7 @@ class BreadcrumbWidget extends api.NoteContextAwareWidget {
     }
 
     async entitiesReloadedEvent({loadResults}) {
-        if (loadResults.attributes.length) this.updateStyles();
+        if (loadResults?.attributes?.length || loadResults?.attributeRows?.length) this.updateStyles();
         if (!this.note) return this.title = "";
         if (!this.title) this.title = this.note.title;
         if (this.note.title != this.title) {
