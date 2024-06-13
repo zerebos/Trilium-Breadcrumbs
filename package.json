@@ -4,11 +4,25 @@
   "description": "A widget to show note breadcrumbs at the bottom of the page.",
   "main": "src/widget.js",
   "scripts": {
+    "build": "esrun scripts/build.ts",
+    "build-dist": "esrun scripts/build.ts -- --minify",
+    "pack": "tpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Zerebos",
   "license": "Apache-2.0",
   "devDependencies": {
-    "eslint": "^8.47.0"
+    "@digitak/esrun": "^3.2.26",
+    "@types/jquery": "^3.5.30",
+    "@types/node": "^20.5.0",
+    "@types/trilium": "npm:trilium-types@^0.1.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "dotenv": "^16.4.5",
+    "esbuild": "^0.21.5",
+    "eslint": "^8.47.0",
+    "trilium-etapi": "^0.1.1",
+    "trilium-pack": "^0.1.0",
+    "typescript": "^5.1.6"
   }
 }

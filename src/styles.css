@@ -1,0 +1,57 @@
+#breadcrumbs-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-top: 1px solid var(--main-border-color);
+    border-bottom: 1px solid var(--main-border-color);
+    contain: none;
+}
+
+#breadcrumbs-bar.bottom {
+    border-bottom: 0;
+}
+
+.note-split > #breadcrumbs-bar {
+    border-top: 0;
+    margin: 0 5px 0 10px;
+    padding: 10px 10px 15px 10px;
+}
+
+#breadcrumbs-bar.borderless {
+    border: 0;
+}
+
+#breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#breadcrumbs a {
+    display: inline-flex;
+    line-height: 1;
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: transform 200ms ease, background-color 200ms ease, filter 200ms ease;
+}
+
+#breadcrumbs a:hover {
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    filter: brightness(1.2);
+    transform: translateY(-3px);
+}
+
+#history-buttons {
+    display: inline-flex;
+    white-space: nowrap;
+}
+
+#breadcrumbs span a {
+    white-space: pre;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inherit;
+}

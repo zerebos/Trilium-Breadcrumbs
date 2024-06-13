@@ -1,0 +1,21 @@
+{
+    "output": "dist/Trilium-Breadcrumbs.zip",
+    "notes": {
+        "title": "Trilium Breadcrumbs",
+        "type": "code",
+        "file": "dist/widget.js",
+        "attributes": {
+            "#widget": "",
+            "#label:globalDisable": "promoted,alias=Disable,single,boolean",
+            "#label:hideHistory": "promoted,alias=Hide History Buttons,single,boolean",
+            "#label:hideBorders": "promoted,alias=Hide Borders,single,boolean",
+            "#label:maxCrumbWidth": "promoted,alias=Maximum Link Width (px),single,number",
+            "#label:position": "promoted,alias=Location (top/bottom/center),single,text",
+            "#globalDisable": "false",
+            "#hideHistory": "false",
+            "#hideBorders": "false",
+            "#maxCrumbWidth": "250",
+            "#position": "center"
+        }
+    }
+}

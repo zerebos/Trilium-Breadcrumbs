@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
+        "declaration": true,
+        "strictNullChecks": true,
+        "moduleResolution": "Node16",
+        "target": "ES2020",
+        "rootDir": "src",
+        "outDir": "lib/cjs",
+        "module": "Node16",
+        "jsx": "preserve",
+        "jsxImportSource": "solid-js",
+    },
+    "include": ["src/**/*"],
+}
