@@ -1,6 +1,6 @@
 {
   "name": "trilium-breadcrumbs",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A widget to show note breadcrumbs at the bottom of the page.",
   "main": "src/widget.js",
   "scripts": {
