@@ -1,0 +1,11 @@
+{
+    "output": "dist/Trilium-Breadcrumbs.zip",
+    "notes": {
+        "title": "Trilium Breadcrumbs",
+        "type": "code",
+        "file": "dist/widget.js",
+        "attributes": {
+            "#widget": ""
+        }
+    }
+}
