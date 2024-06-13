@@ -64,7 +64,7 @@ const position = api.startNote.getLabelValue("breadcrumbsPosition") ?? "";
 
 class BreadcrumbWidget extends api.NoteContextAwareWidget {
     get position() {return position === "bottom" ? 100 : position === "top" ? 1 : 50;}
-    get parentWidget() {return (this.position === 100 || this.position === 1) ? "center-pane" : "note-detail-pane";}
+    static get parentWidget() {return (this.position === 100 || this.position === 1) ? "center-pane" : "note-detail-pane";}
 
     constructor() {
         super();
@@ -123,4 +123,4 @@ class BreadcrumbWidget extends api.NoteContextAwareWidget {
     }
 }
 
-module.exports = new BreadcrumbWidget();
+module.exports = BreadcrumbWidget;
