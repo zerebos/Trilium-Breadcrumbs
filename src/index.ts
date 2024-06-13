@@ -20,7 +20,7 @@ class BreadcrumbWidget extends api.NoteContextAwareWidget {
 
     isEnabled() {
         if (!super.isEnabled()) return false;
-        const widgetDisable = api.startNote.hasLabel("breadcrumbsDisable");
+        const widgetDisable = api.startNote.getLabelValue("globalDisable") === "true";
         const noteDisable = this.note?.hasLabel("breadcrumbsDisable");
         return !widgetDisable && !noteDisable;
     }
