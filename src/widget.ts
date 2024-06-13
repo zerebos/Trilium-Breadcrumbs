@@ -1,3 +1,6 @@
+import {Note, LoadResults} from "trilium/frontend";
+
+
 /**
  * A widget to show note breadcrumbs at the bottom of the page.
  */
@@ -58,13 +61,29 @@ const styles = `
     transform: translateY(-3px);
 }
 
+#history-buttons {
+    display: inline-flex;
+    white-space: nowrap;
+}
+
+#breadcrumbs span a {
+    white-space: pre;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+    display: inherit;
+}
+
 /* Place your CSS above this */`;
 
 const position = api.startNote.getLabelValue("breadcrumbsPosition") ?? "";
 
 class BreadcrumbWidget extends api.NoteContextAwareWidget {
+    title: string;
+    $breadcrumbs: JQuery;
+
     get position() {return position === "bottom" ? 100 : position === "top" ? 1 : 50;}
-    static get parentWidget() {return (this.position === 100 || this.position === 1) ? "center-pane" : "note-detail-pane";}
+    static get parentWidget() {return (position === "bottom" || position === "top") ? "center-pane" : "note-detail-pane";}
 
     constructor() {
         super();
@@ -92,9 +111,12 @@ class BreadcrumbWidget extends api.NoteContextAwareWidget {
         await this.makeBreadcrumb();
     }
 
-    async entitiesReloadedEvent({loadResults}) {
-        if (loadResults?.attributes?.length || loadResults?.attributeRows?.length) this.updateStyles();
-        if (!this.note) return this.title = "";
+    async entitiesReloadedEvent({loadResults}: {loadResults: LoadResults}) {
+        if (loadResults?.attributeRows?.length) this.updateStyles();
+        if (!this.note) {
+            this.title = "";
+            return;
+        }
         if (!this.title) this.title = this.note.title;
         if (this.note.title != this.title) {
             this.title = this.note.title;
@@ -104,10 +126,10 @@ class BreadcrumbWidget extends api.NoteContextAwareWidget {
 
     async makeBreadcrumb() {
         this.$breadcrumbs.empty();
-        const notePath = api.getActiveContextNotePath().split("/");
+        const notePath = api.getActiveContextNotePath()?.split("/") ?? [];
         for (let n = 0; n < notePath.length; n++) {
             const path = notePath.slice(0, n + 1);
-            const link = await api.createNoteLink(path.join("/"));
+            const link = await api.createLink(path.join("/"));
             this.$breadcrumbs.append(link);
             if (n < (notePath.length - 1)) this.$breadcrumbs.append("/");
         }

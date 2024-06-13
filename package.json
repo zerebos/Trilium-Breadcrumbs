@@ -9,6 +9,11 @@
   "author": "Zerebos",
   "license": "Apache-2.0",
   "devDependencies": {
-    "eslint": "^8.47.0"
+    "@types/node": "^20.5.0",
+    "@types/trilium": "npm:trilium-types@^0.1.0",
+    "eslint": "^8.47.0",
+    "trilium-etapi": "^0.1.1",
+    "trilium-pack": "^0.1.0",
+    "typescript": "^5.1.6"
   }
 }
