@@ -4,8 +4,7 @@ import template from "./template.html";
 import styles from "./styles.css";
 
 
-const position = api.startNote.getLabelValue("breadcrumbsPosition") ?? "";
-
+const position = api.startNote.getLabelValue("position") ?? "center";
 class BreadcrumbWidget extends api.NoteContextAwareWidget {
     title: string;
     $breadcrumbs: JQuery;
@@ -30,8 +29,6 @@ class BreadcrumbWidget extends api.NoteContextAwareWidget {
         this.$widget = $(template);
         this.$breadcrumbs = this.$widget.find("#breadcrumbs");
         this.updateStyles();
-        if (position === "bottom") this.$widget.addClass("bottom");
-        if (api.startNote.hasLabel("borderless")) this.$widget.addClass("borderless");
         const maxWidth = api.startNote.getLabelValue("maxCrumbWidth") ?? 250;
         const maxCrumbWidth = `#breadcrumbs span a { max-width: ${maxWidth}px; }`;
         this.cssBlock(`${styles}\n${maxCrumbWidth}`);
@@ -67,18 +64,38 @@ class BreadcrumbWidget extends api.NoteContextAwareWidget {
     }
 
     updateStyles() {
+        this.updateHistoryButtons();
+        this.updateWidths();
+        this.updateBorders();
+        this.updatePosition();
+    }
+
+    updateHistoryButtons() {
         const buttonWrapper = this.$widget.find("#history-buttons");
         if (!buttonWrapper) return; // This should never happen but... just in case
         const isVisible = buttonWrapper.css("display") !== "none";
         const shouldHide = api.startNote.getLabelValue("hideHistory") === "true";
         if (isVisible && shouldHide) buttonWrapper.hide();
         if (!isVisible && !shouldHide) buttonWrapper.show();
+    }
 
+    updateWidths() {
         // TODO: de-dup with doRender
         const maxWidth = api.startNote.getLabelValue("maxCrumbWidth") ?? 250;
         const maxCrumbWidth = `#breadcrumbs span a { max-width: ${maxWidth}px; }`;
         if (!this.styleElement) this.styleElement = this.$widget.find("style").first()[0];
         if (this.styleElement) this.styleElement.textContent = `${styles}\n${maxCrumbWidth}`;
+    }
+
+    updateBorders() {
+        const shouldHide = api.startNote.getLabelValue("hideBorders") === "true";
+        const isVisible = !this.$widget.hasClass("borderless");
+        if (isVisible && shouldHide) this.$widget.addClass("borderless");
+        if (!isVisible && !shouldHide) this.$widget.removeClass("borderless");
+    }
+
+    updatePosition() {
+        if (position === "bottom") this.$widget.addClass("bottom");
     }
 }
 

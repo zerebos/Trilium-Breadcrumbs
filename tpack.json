@@ -7,9 +7,13 @@
         "attributes": {
             "#widget": "",
             "#label:hideHistory": "promoted,alias=Hide History Buttons,single,boolean",
+            "#label:hideBorders": "promoted,alias=Hide Borders,single,boolean",
             "#label:maxCrumbWidth": "promoted,alias=Maximum Link Width (px),single,number",
+            "#label:position": "promoted,alias=Location (top/bottom/center),single,text",
             "#hideHistory": "false",
-            "#maxCrumbWidth": "250"
+            "#hideBorders": "false",
+            "#maxCrumbWidth": "250",
+            "#position": "center"
         }
     }
 }
