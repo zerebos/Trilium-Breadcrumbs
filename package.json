@@ -13,6 +13,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@digitak/esrun": "^3.2.26",
+    "@types/jquery": "^3.5.30",
     "@types/node": "^20.5.0",
     "@types/trilium": "npm:trilium-types@^0.1.0",
     "@typescript-eslint/eslint-plugin": "^7.13.0",
