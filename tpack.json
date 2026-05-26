@@ -10,6 +10,7 @@
             "#label:hideHistory": "promoted,alias=Hide History Buttons,single,boolean",
             "#label:hideBorders": "promoted,alias=Hide Borders,single,boolean",
             "#label:maxCrumbWidth": "promoted,alias=Maximum Link Width (px),single,number",
+            "#label:maxBreadcrumbs": "promoted,alias=Maximum Breadcrumbs,single,number",
             "#label:position": "promoted,alias=Location (top/bottom/center),single,text",
             "#globalDisable": "false",
             "#hideHistory": "false",

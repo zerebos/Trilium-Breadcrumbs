@@ -55,11 +55,21 @@ class BreadcrumbWidget extends api.NoteContextAwareWidget {
     async makeBreadcrumb() {
         this.$breadcrumbs.empty();
         const notePath = api.getActiveContextNotePath()?.split("/") ?? [];
-        for (let n = 0; n < notePath.length; n++) {
+        const totalCrumbs = notePath.length;
+        // Use user defined value from promoted attribute
+        const maxBreadcrumbs = api.startNote.getLabelValue("maxBreadcrumbs") ?? 15; // default value
+        // Hide breadcrumbs if they exceed the maximum allowed
+        const startIndex = Math.max(0, totalCrumbs - maxBreadcrumbs);
+
+        if (startIndex > 0) {
+            this.$breadcrumbs.append(`<span>...</span>`);
+        }
+
+        for (let n = startIndex; n < totalCrumbs; n++) {
             const path = notePath.slice(0, n + 1);
             const link = await api.createLink(path.join("/"));
             this.$breadcrumbs.append(link);
-            if (n < (notePath.length - 1)) this.$breadcrumbs.append("/");
+            if (n < (totalCrumbs - 1)) this.$breadcrumbs.append("/");
         }
     }
 
